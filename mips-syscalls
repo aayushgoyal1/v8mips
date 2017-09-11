@@ -1,0 +1,92 @@
+# Prompt the user for their name.
+	li $v0, 4
+	la $a0, NamePrompt
+	syscall
+	
+	# Stores the user's input name.  
+	li $v0, 8
+	la $a0, Name
+	li $a1, 20
+	syscall
+	
+	# Prompt the user for an integer
+	la $a0, IntegerPrompt
+	li $v0, 4
+	syscall
+	
+	# Stores the user's input integer into a.
+	li $v0, 5
+	syscall
+	sw $v0, a
+	
+	#Prompt the user for an integer.
+	la $a0, IntegerPrompt
+	li $v0, 4
+	syscall
+	
+	# Stores the user's input integer into b.
+	li $v0, 5
+	syscall
+	sw $v0, b
+	
+	#Prompt the user for an integer.
+	la $a0, IntegerPrompt
+	li $v0, 4
+	syscall
+	
+	# Stores the user's input integer into c.
+	li $v0, 5
+	syscall
+	sw $v0, c
+		
+	#Output the user's name.
+	la $a0, Name
+	li $v0, 4
+	syscall
+------
+
+# Prompt the user for their name.
+	li $v0, 4
+	la $a0, NamePrompt
+	syscall
+	
+	# Stores the user's input name.  
+	li $v0, 8
+	la $a0, Name
+	li $a1, 20
+	syscall
+	
+	# Prompt the user for an integer
+	la $a0, IntegerPrompt
+	li $v0, 4
+	syscall
+	
+	# Stores the user's input integer into a.
+	li $v0, 5
+	syscall
+	sw $v0, a
+	
+	#Output the user's name.
+	la $a0, Name
+	li $v0, 4
+	syscall
+	
+	#Prompt the user for an integer.
+	la $a0, IntegerPrompt
+	li $v0, 4
+	syscall
+	
+	# Stores the user's input integer into b.
+	li $v0, 5
+	syscall
+	sw $v0, b
+	
+	#Prompt the user for an integer.
+	la $a0, IntegerPrompt
+	li $v0, 4
+	syscall
+	
+	# Stores the user's input integer into c.
+	li $v0, 5
+	syscall
+	sw $v0, c

@@ -1,1 +1,126 @@
+# This program's function is to get user inputs of name and three integer values to load and store. These values are then used to calculate the value of three expressions, which 
+# will be displayed with formatting to include the name input and spacing between each value for readability. 
+
+		.data						# Three variables to hold input values: a, b, and c	
+a:		.word    0	
+b:		.word    0
+c:		.word    0
+output1:	.word    0					# Three variables to hold output values
+output2:	.word    0			
+output3:	.word	 0
+userName:	.space	20 		
+namePrompt:	.asciiz "What is your name? "			# Three variables to prompt for name, prompt for integers, and message for results
+intPrompt:	.asciiz "Please enter an integer between 1-100: "
+results:	.asciiz	"your answers are: "
+space:  .asciiz " "
+ 
+   
+		.text 
+main:
+
+	# Prompt the user to input name.
+	li $v0, 4
+	la $a0, namePrompt
+	syscall
+	
+	# Stores the user's input name.  
+	li $v0, 8
+	la $a0, userName
+	li $a1, 20
+	syscall
+	
+	# Prompt the user for the first integer
+	la $a0, intPrompt
+	li $v0, 4
+	syscall
+	
+	# Stores the user's input integer into a.
+	li $v0, 5
+	syscall
+	# add $t0, $0, $v0
+	sw $v0, a
+	
+	#Prompt the user for the second integer.
+	la $a0, intPrompt
+	li $v0, 4
+	syscall
+	
+	# Stores the user's input integer into b.
+	li $v0, 5
+	syscall
+	# add $t0, $0, $v0
+	sw $v0, b
+	
+	#Prompt the user for the third integer.
+	la $a0, intPrompt
+	li $v0, 4
+	syscall
+	
+	# Stores the user's input integer into c.
+	li $v0, 5
+	syscall
+	# add $t0, $0, $v0
+	sw $v0, c
+
+	lw $s1, a
+	lw $s2, b
+	lw $s3, c
+	
+	# Calculates ans1 = (a + 2) + (b - 5) and stores the result
+	addi $t1, $s1, 2
+    	subi $t2, $s2, 5
+    	add $t3, $t1, $t2 
+    	sw $t3, output1
+    		 
+    	# Calculates ans2 = 5 * a - b + 10 and stores the result	
+    	mul $t1, $s1, 5 
+    	sub $t2, $t1, $s2  
+    	addi $t3, $t2, 10  
+    	sw $t3, output2 
+    	 
+    	# Calculates ans3 = a + b/2 and stores the result	
+    	div $t1, $s2, 2
+    	add $t2, $s1, $t1 
+    	sw $t2, output3 
+
+    	# Output the user's name.
+	la $a0, userName
+	li $v0, 4
+	syscall
+	
+	la $a0, results # load address
+	li $v0,4
+	syscall
+    	    	    	
+    	lw $a0, output1 # load word
+	li $v0, 1
+	syscall
+	
+	la  $a0, space # print space
+    	li  $v0, 4          
+    	syscall
+
+	
+	lw $a0, output2 # load word
+	li $v0, 1
+	syscall
+	
+	la  $a0, space # print space
+    	li  $v0, 4          
+    	syscall
+	
+				
+	lw $a0, output3 # load word
+	li $v0, 1
+	syscall 
+	
+	# Terminate program
+    	li $v0, 10
+    	syscall
+
+		
+	# Test values: a = 70, b = 80, c = 90
+	# Expected output: output1 = 147, output2 = 280, output3 = 110
+		
+		
 
